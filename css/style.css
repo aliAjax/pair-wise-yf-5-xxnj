@@ -1,0 +1,199 @@
+:root {
+  --green: #2e7d32;
+  --green-dark: #1b5e20;
+  --green-soft: #e8f5e9;
+  --amber: #f9a825;
+  --red: #c62828;
+  --ink: #263238;
+  --line: #d7e0d7;
+  --bg: #f4f7f0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.site-header {
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: #fff;
+  padding: 20px 24px;
+}
+
+.site-header h1 { margin: 0 0 6px; font-size: 1.4rem; }
+
+.meta {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  font-size: 0.85rem;
+  opacity: 0.95;
+}
+
+.rule { opacity: 0.85; }
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  color: var(--green-dark);
+  border-left: 4px solid var(--green);
+  padding-left: 8px;
+}
+
+/* 消息条 */
+.message {
+  max-width: 960px;
+  margin: 12px auto 0;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+}
+.message.ok   { background: var(--green-soft); color: var(--green-dark); border: 1px solid #a5d6a7; }
+.message.fail { background: #ffebee; color: var(--red); border: 1px solid #ef9a9a; }
+
+/* 当月借阅 */
+.person-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.person {
+  background: var(--green-soft);
+  border-radius: 8px;
+  padding: 8px 14px;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.person-name { font-weight: 600; }
+.quota { font-size: 0.85rem; color: var(--green-dark); }
+.quota-full { color: var(--red); font-weight: 600; }
+
+/* 库存表 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+th, td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+th { background: var(--green-soft); color: var(--green-dark); white-space: nowrap; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.tag {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+.tag-ok      { background: var(--green-soft); color: var(--green-dark); }
+.tag-expired { background: #ffebee; color: var(--red); }
+.tag-empty   { background: #eceff1; color: #546e7a; }
+.tag-reserve { background: #fff8e1; color: #8d6e00; }
+
+/* 借种表单 */
+.borrow-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+.borrow-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+  flex: 1 1 220px;
+}
+select {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 0.92rem;
+  background: #fff;
+}
+
+/* 按钮 */
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 9px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.btn-primary { background: var(--green); color: #fff; }
+.btn-primary:hover { background: var(--green-dark); }
+.btn-reset {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+}
+.btn-reset:hover { background: rgba(255, 255, 255, 0.3); }
+.btn-ok   { background: var(--green-soft); color: var(--green-dark); border: 1px solid #a5d6a7; }
+.btn-dead { background: #fff8e1; color: #8d6e00; border: 1px solid #ffe082; }
+.btn-ok:hover, .btn-dead:hover { filter: brightness(0.95); }
+
+/* 归还列表 */
+.hint { margin: 0 0 10px; font-size: 0.85rem; color: #607d8b; }
+.empty { color: #90a4ae; font-size: 0.9rem; margin: 4px 0; }
+
+.loan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.loan:last-child { border-bottom: none; }
+.loan-actions { display: flex; gap: 8px; }
+.loan-actions .btn { padding: 6px 12px; font-size: 0.85rem; }
+
+/* 历史记录 */
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.88rem;
+  color: #546e7a;
+}
+.history-list li { padding: 4px 0; border-bottom: 1px dashed var(--line); }
+.history-list li:last-child { border-bottom: none; }
+.history-active { color: var(--green-dark); font-weight: 600; }
+
+@media (max-width: 640px) {
+  th, td { padding: 6px; font-size: 0.82rem; }
+}
