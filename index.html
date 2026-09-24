@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>社区种子图书馆 · 借还台</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div>
+        <h1>🌱 社区种子图书馆</h1>
+        <p class="tagline">邻里共享种子 · 借一包、还一包，让好种子一直流动</p>
+      </div>
+      <div class="today" id="today-badge" aria-label="今日日期"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- 首页概览：每人当月借阅 + 各品种库存 -->
+    <section class="card" aria-labelledby="overview-title">
+      <div class="card-head">
+        <h2 id="overview-title">本月概览</h2>
+        <span class="hint" id="month-label"></span>
+      </div>
+      <div class="overview-grid">
+        <div>
+          <h3 class="sub-title">住户当月借阅</h3>
+          <div id="resident-overview" class="resident-list"></div>
+        </div>
+        <div>
+          <h3 class="sub-title">各品种库存</h3>
+          <div id="stock-overview" class="stock-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="two-col">
+      <!-- 借种入口 -->
+      <section class="card" aria-labelledby="borrow-title">
+        <div class="card-head">
+          <h2 id="borrow-title">📤 借种</h2>
+          <span class="hint">每人当月最多借 2 包</span>
+        </div>
+        <form id="borrow-form" class="action-form">
+          <label>
+            住户
+            <select id="borrow-resident"></select>
+          </label>
+          <label>
+            种子品种
+            <select id="borrow-seed"></select>
+          </label>
+          <button type="submit" class="btn primary">借出一包</button>
+        </form>
+        <div id="borrow-message" class="message" role="status" aria-live="polite"></div>
+        <p class="rule-note">
+          规则：播种截止日已过不可借；库存不足或被周末交换课预留（库存 ≤ 4 时留 2 包）不可借；
+          当月已借 2 包不可借。借还记录保存在本机浏览器，重开页面仍在。
+        </p>
+      </section>
+
+      <!-- 归还入口 -->
+      <section class="card" aria-labelledby="return-title">
+        <div class="card-head">
+          <h2 id="return-title">📥 归还</h2>
+          <span class="hint">先测发芽，再标记归还</span>
+        </div>
+        <div id="return-message" class="message" role="status" aria-live="polite"></div>
+        <div id="return-list" class="return-list"></div>
+      </section>
+    </div>
+
+    <!-- 借还与损耗记录 -->
+    <section class="card" aria-labelledby="history-title">
+      <div class="card-head">
+        <h2 id="history-title">借还与损耗记录</h2>
+        <span class="hint" id="history-summary"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>住户</th>
+              <th>品种</th>
+              <th>借出时间</th>
+              <th>状态</th>
+              <th>归还/损耗时间</th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="page-foot">
+      <p>数据仅保存在本浏览器（localStorage）。</p>
+      <button type="button" id="reset-demo" class="btn ghost">恢复演示初始数据</button>
+    </footer>
+  </main>
+
+  <!-- 分块加载：目录数据 → 借还判断 → 页面入口 -->
+  <script src="js/data.js"></script>
+  <script src="js/library.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
